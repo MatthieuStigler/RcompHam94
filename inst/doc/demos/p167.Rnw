@@ -36,20 +36,14 @@ yeardiff.s.Y.omega <- generate.plot.data( yeardiff.data, s.Y.omega.Bartlett, 12 
 The resulting output is shown below.
 \begin{center}
 \begin{Scode}{fig=TRUE, echo=FALSE}
-screens <- split.screen( figs=c(2,2) )
-screen( n = screens[[1]], new = TRUE )
-par( mar=c(4,2,1,2),cex=.75)
+opar<-par(mfrow=c(2,2),mar=c(4,2,1,2),cex=.75)
+
 plot(selection$Month, raw.data, type = "l", xlab="Figure 6.3 - FRB IP Index, NSA", ylab="")
-screen( n = screens[[2]], new = TRUE )
-par( mar=c(4,2,1,2),cex=.75)
 plot(1:length(raw.s.Y.omega),raw.s.Y.omega, type = "l", xlab="Figure 6.4 - Value of j", ylab="")
-screen( n = screens[[3]], new = TRUE )
-par( mar=c(4,2,1,2),cex=.75)
 plot(1:length(logdiff.s.Y.omega),logdiff.s.Y.omega, type = "l", xlab="Figure 6.5 - Value of j", ylab="")
-screen( n = screens[[4]], new = TRUE )
-par( mar=c(4,2,1,2),cex=.75)
 plot(1:length(yeardiff.s.Y.omega),yeardiff.s.Y.omega, type = "l", xlab="Figure 6.6 - Value of j", ylab="")
-close.screen(all=TRUE)
+
+par(opar)
 \end{Scode}
 \end{center}
 
