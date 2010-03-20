@@ -5,14 +5,17 @@
 \usepackage{amsmath}
 \usepackage{Sweave}
 \usepackage{url}
+\usepackage[unicode=true, pdfusetitle, backref=false,colorlinks=false] {hyperref}
 
-\providecommand*{\perispomeni}{\char126}
-\AtBeginDocument{\DeclareRobustCommand{\greektext}{%
-  \fontencoding{LGR}\selectfont\def\encodingdefault{LGR}%
-  \renewcommand{\~}{\perispomeni}%
-}}
-\DeclareRobustCommand{\textgreek}[1]{\leavevmode{\greektext #1}}
-\DeclareFontEncoding{LGR}{}{}
+
+
+%\providecommand*{\perispomeni}{\char126}
+%\AtBeginDocument{\DeclareRobustCommand{\greektext}{%
+%  \fontencoding{LGR}\selectfont\def\encodingdefault{LGR}%
+%  \renewcommand{\~}{\perispomeni}%
+%}}
+%\DeclareRobustCommand{\textgreek}[1]{\leavevmode{\greektext #1}}
+%\DeclareFontEncoding{LGR}{}{}
 
 \SweaveOpts{eps=FALSE, split=FALSE}
 \newcommand{\RcH}{\texttt{Ham94} }
