@@ -1,0 +1,16 @@
+p4	Dynamic multipliers for first order difference equations
+p5	Tranistory and permanent changes in linear difference equations
+p15	Dynamic multipliers for second order difference equations
+p50	Autocorrelations for AR and MA processes
+p51	Autocorrelations as a Function of the Moving Average Parameter
+p55	Realizations of AR and MA processes
+p112	Calculation of sample autocorrelations and sample partial autocorrelations
+p167	Spectral Analysis
+p376	Kalman Filtering
+p410	Generalized Method of Moments
+p448	Fractional Integration
+p489	Univariate Processes With Unit Roots
+p582	Cointegration
+p647	Full Information Maximum Likelihood Cointegration
+p660	Time Series Models of Heteroskedasticity
+p697	Markov Switching Models

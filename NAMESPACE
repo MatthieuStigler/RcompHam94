@@ -1,0 +1,5 @@
+export(
+  Newey.West,
+  Dickey.Fuller,
+  Phillips.Perron,
+  Wald.F.Test )

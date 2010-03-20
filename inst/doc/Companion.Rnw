@@ -1,0 +1,107 @@
+\documentclass[a4paper]{article}
+%\VignetteIndexEntry{Ham94: Companion to James Hamilton's "Time Series Analysis"}
+\usepackage[latin9]{inputenc}
+\usepackage{verbatim}
+\usepackage{amsmath}
+\usepackage{Sweave}
+\usepackage{url}
+
+\providecommand*{\perispomeni}{\char126}
+\AtBeginDocument{\DeclareRobustCommand{\greektext}{%
+  \fontencoding{LGR}\selectfont\def\encodingdefault{LGR}%
+  \renewcommand{\~}{\perispomeni}%
+}}
+\DeclareRobustCommand{\textgreek}[1]{\leavevmode{\greektext #1}}
+\DeclareFontEncoding{LGR}{}{}
+
+\SweaveOpts{eps=FALSE, split=FALSE}
+\newcommand{\RcH}{\texttt{Ham94} }
+\newcommand{\fun}[1]{\emph{#1}}
+\newcommand{\lib}[1]{package \emph{#1}}
+\newcommand{\TSA}{\texttt{Time Series Analysis} }
+\linespread{1.3}
+\SweaveSyntax{SweaveSyntaxLatex}
+
+\begin{document}
+\begin{Scode}{results=hide, echo=FALSE}
+library("Ham94", lib.loc = "../../../library")
+options(prompt=" ", encoding="LATIN-9")
+\end{Scode}
+
+\begin{titlepage}
+{\centering \huge An R Companion to James Hamilton's "\TSA" \\[0.5cm]
+with R\\[0.5cm]
+\small Robert Bell, Matthieu Stigler\\}
+\vfill\par
+{\centering Preliminary\\}
+\end{titlepage}
+
+\section*{Foreword} \RcH is an R package that implements many of the worked examples in \TSA
+as well as providing access to the code and datasets used.  In many cases \RcH provides both
+simplified implmentations "from scratch" to allow the reader to explore the underlying logic and
+calculations, and more realistic implementations that make use of the large body
+of contributed packages in the Comprehensive R Archive Network (CRAN).  Thus readers who have
+cut their teeth on the textbook can use this package as a stepping stone to doing their own
+analysis and/or research.  Readers looking for additional introductory treatment of facilities 
+available in CRAN can explore other excellent introductions such as \url{http://cran.r-project.org/doc/contrib/Farnsworth-EconometricsInR.pdf}
+and \url{http://cran.r-project.org/web/packages/AER/AER.pdf}.
+
+We assume the reader has downloaded the R language, and package "Ham94" from \url{http://www.r-project.org/}
+and has read "An Introduction to R" available here \url{http://cran.r-project.org/doc/manuals/R-intro.html}
+and also available as a PDF from the "Help" menu of the R package.
+
+To load the package, just use:
+
+\begin{Scode}{eval=FALSE}
+library("Ham94")
+\end{Scode}
+
+Code shown in this document (and some not shown for brevity) can be executed using the R "demo" function.  For a list of
+available demos, use:
+
+\begin{Scode}{eval=FALSE}
+demo(package="Ham94")
+\end{Scode}
+
+To invoke a specific demo, say the demo called "p112", use:
+\begin{Scode}{eval=FALSE}
+demo(topic="p112",package="Ham94")
+\end{Scode}
+
+In general the demos are written so that the results of individual calculations can be examined
+after the fact by examining variables containing the results of those calculations.
+
+Page references in the body of this document refer to \TSA.
+\pagebreak{}
+\tableofcontents
+\pagebreak{}
+\section{Linear Difference Equations}
+\SweaveInput{demos/p4.H}
+\SweaveInput{demos/p5.H}
+\SweaveInput{demos/p15.H}
+\section{Stationary ARMA Processes}
+\SweaveInput{demos/p50.H}
+\SweaveInput{demos/p51.H}
+\SweaveInput{demos/p55.H}
+\section{Sample Autocorrelations and Partial Autocorrelations}
+\SweaveInput{demos/p112.H}
+\section{Spectral Analysis}
+\SweaveInput{demos/p167.H}
+\section{The Kalman Filter}
+\SweaveInput{demos/p376.H}
+\section{Generalized Method of Moments}
+\SweaveInput{demos/p410.H}
+\section{Models of Nonstationary Time Series}
+\SweaveInput{demos/p448.H}
+\section{Univariate Processes with Unit Roots}
+\SweaveInput{demos/p489.H}
+\section{Cointegration}
+\SweaveInput{demos/p582.H}
+\section{Full-Information Maximum Likelihood Analysis of Cointegrated Systems}
+\SweaveInput{demos/p647.H}
+\section{Time Series Models of Heteroskedasticity}
+\SweaveInput{demos/p660.H}
+\section{Modeling Time Series with Changes in Regime}
+\SweaveInput{demos/p697.H}
+
+\end{document}

@@ -1,0 +1,15 @@
+Companion.Rnw
+  add \usepackage{Sweave} before usepackage url
+p167.Rnw
+  find out how to use kernel smoothing and function spectrum
+p376.Rnw
+  add legend to graph
+  get output data on the unsmoothed and smoothed interferences and make sure the code works.
+p410.Rnw
+  Work through an example from package GMM
+p448.Rnw
+  Not even sure if I should include it.
+p489, 582, 599
+  Add in use of R packages
+p582
+  legend on graph

@@ -1,0 +1,11 @@
+Package: Ham94
+Type: Package
+Title: Companion book to "Time Series Analysis" by James D. Hamilton, 
+Version: 0.1
+Date: 2010-03-07
+Author: Matthieu Stigler, Robert Bell
+Maintainer: Matthieu Stigler <Matthieu.Stigler@gmail.com>, Robert Bell <robertkevinbell@yahoo.com>
+Depends: R (>= 2.0.0), stats, FKF, fracdiff
+LazyLoad: yes
+Description: R code for the examples shown in the book
+License: GPL (>= 2)

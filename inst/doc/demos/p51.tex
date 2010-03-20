@@ -1,0 +1,15 @@
+\begin{Schunk}
+\begin{Sinput}
+> library("Ham94", lib.loc = "../../../library")
+\end{Sinput}
+\end{Schunk}
+Figure 3.2 is easily generated from the formula for autocorrelations of an MA(1) process.
+\begin{Schunk}
+\begin{Sinput}
+> theta <- (-300:300) * 0.01
+> corrs <- theta/(1 + theta^2)
+> plot(theta, corrs, type = "l")
+> grid(nx = 2, ny = 2)
+\end{Sinput}
+\end{Schunk}
+\includegraphics{p51-002}

@@ -1,0 +1,4 @@
+\SweaveSyntax{SweaveSyntaxLatex}
+\begin{Scode}{}
+library("Ham94", lib.loc = "../../../library")
+\end{Scode}

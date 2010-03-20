@@ -1,0 +1,36 @@
+\begin{Schunk}
+\begin{Sinput}
+> library("Ham94", lib.loc = "../../../library")
+\end{Sinput}
+\end{Schunk}
+This example uses package fracdiff to compute the exponent of fractional integration as described on pp448-449.
+Data is US GDP and Treasury Yields.
+\begin{Schunk}
+\begin{Sinput}
+> data(gnptbill, package = "Ham94")
+> print(fdGPH(gnptbill$GNP))
+\end{Sinput}
+\begin{Soutput}
+$d
+[1] 0.9588756
+
+$sd.as
+[1] 0.2427173
+
+$sd.reg
+[1] 0.04061276
+\end{Soutput}
+\begin{Sinput}
+> print(fdGPH(gnptbill$TBILL))
+\end{Sinput}
+\begin{Soutput}
+$d
+[1] 0.9511594
+
+$sd.as
+[1] 0.2427173
+
+$sd.reg
+[1] 0.227921
+\end{Soutput}
+\end{Schunk}
