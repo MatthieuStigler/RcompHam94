@@ -33,6 +33,8 @@ Dickey.Fuller(T, rho, sigma.rho, zeta=numeric(0) )
 }
 
 \examples{
+data(gnptbill)
+tbill.data <- data.frame(yt = gnptbill$TBILL[-1], yt_1 = gnptbill$TBILL[-length(gnptbill$TBILL)])
 case1.lms <- summary(lm( yt ~ 0 + yt_1 + 0, tbill.data))
 case1.DF <- Dickey.Fuller( T=length(tbill.data$yt),
   rho=case1.lms$coefficients[["yt_1","Estimate"]],
