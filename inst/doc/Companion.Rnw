@@ -27,7 +27,7 @@
 
 \begin{document}
 \begin{Scode}{results=hide, echo=FALSE}
-library("Ham94", lib.loc = "../../../library")
+library("Ham94")
 options(prompt=" ", encoding="LATIN-9")
 \end{Scode}
 
