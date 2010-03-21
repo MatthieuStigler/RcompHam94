@@ -1,11 +1,7 @@
 \subsection{Comparing Transitory Versus Permanent Changes}
-The above example examined the effect changing
-\textgreek{f}
-on the dynamic multiplier.  Pages 5 and 6 
+The above example examined the effect changing $\phi$ on the dynamic multiplier.  Pages 5 and 6 
 describe what happens when the permanence of the change is varied with a fixed multiplier, i.e.
-while leaving
-\textgreek{f}
-unchanged.
+while leaving $\phi$ unchanged.
 \begin{Scode}{}
 phi <- .8
 T <- 20
