@@ -17,13 +17,6 @@ subsections = \
 	$(COMPONENTDIR)/p660.Rnw \
 	$(COMPONENTDIR)/p697.Rnw
 
-all : Companion.pdf ;
-
-Companion.pdf : Companion.tex
-	texi2dvi --pdf Companion.tex
-  
-Companion.tex: $(subsections) Companion.Rnw
-	R CMD Sweave Companion.Rnw
 
 %.Rnw : %.H
 	cat demos/Sweave_prefix.Rnw $< > $(*F).Rnw
@@ -32,3 +25,15 @@ Companion.tex: $(subsections) Companion.Rnw
 	R CMD Stangle $(*F).Rnw
 	grep -v "^###" $(*F).R > ../../demo/$(*F).R
 	mv $(*F)*.* $(COMPONENTDIR)
+
+all : Companion.pdf ;
+
+Companion.pdf : Companion.tex
+	texi2dvi --pdf Companion.tex
+  
+Companion.tex: $(subsections) Companion.Rnw
+	R CMD Sweave Companion.Rnw
+
+clean :	
+	rm Rplots.pdf Companion-* Companion.toc Companion.out Companion.log Companion.aux
+	cd ./demos; rm *.tex *.pdf *.eps
