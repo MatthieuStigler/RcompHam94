@@ -34,16 +34,5 @@ Phillips.Perron( T, rho, sigma.rho, s, lambda.hat.sq, gamma0 )
     \emph{Time Series Analysis}, Princeton University Press.
 }
 
-\examples{
-pp.lms <- summary(lm( zt ~ zt_1 + 1,
-            data.frame(zt=ppp.data$rer[-1], zt_1=ppp.data$rer[-length(ppp.data$rer)]) ))
-PP.results <- Phillips.Perron(
-  T=length(pp.lms$residuals),
-  rho=pp.lms$coefficients[["zt_1","Estimate"]],
-  sigma.rho=pp.lms$coefficients[["zt_1","Std. Error"]],
-  s=pp.lms$sigma,
-  lambda.hat.sq=as.numeric(Newey.West( pp.lms$residuals %o% 1, 12 )),
-  gamma0=mean(pp.lms$residuals^2) )
-}
 
 \keyword{regression}

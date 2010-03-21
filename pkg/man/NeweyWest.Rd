@@ -29,7 +29,7 @@ equation [10.5.15].
 }
 
 \examples{
-Newey.West( annual.data.lm$residuals %o% 1, 12 )
+#Newey.West( annual.data.lm$residuals %o% 1, 12 )
 }
 
 \keyword{regression}
