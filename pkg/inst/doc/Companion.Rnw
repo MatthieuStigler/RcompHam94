@@ -1,5 +1,5 @@
 \documentclass[a4paper]{article}
-%\VignetteIndexEntry{Ham94: Companion to James Hamilton's "Time Series Analysis"}
+%\VignetteIndexEntry{RcompHam94: Companion to James Hamilton's "Time Series Analysis"}
 \usepackage[latin9]{inputenc}
 \usepackage{verbatim}
 \usepackage{amsmath}
@@ -7,18 +7,8 @@
 \usepackage{url}
 \usepackage[unicode=true, pdfusetitle, backref=false,colorlinks=false] {hyperref}
 
-
-
-%\providecommand*{\perispomeni}{\char126}
-%\AtBeginDocument{\DeclareRobustCommand{\greektext}{%
-%  \fontencoding{LGR}\selectfont\def\encodingdefault{LGR}%
-%  \renewcommand{\~}{\perispomeni}%
-%}}
-%\DeclareRobustCommand{\textgreek}[1]{\leavevmode{\greektext #1}}
-%\DeclareFontEncoding{LGR}{}{}
-
 \SweaveOpts{eps=FALSE, split=FALSE}
-\newcommand{\RcH}{\texttt{Ham94} }
+\newcommand{\RcH}{\texttt{RcompHam94} }
 \newcommand{\fun}[1]{\emph{#1}}
 \newcommand{\lib}[1]{package \emph{#1}}
 \newcommand{\TSA}{\texttt{Time Series Analysis} }
@@ -27,7 +17,6 @@
 
 \begin{document}
 \begin{Scode}{results=hide, echo=FALSE}
-library("Ham94")
 options(prompt=" ", encoding="LATIN-9")
 \end{Scode}
 
@@ -49,26 +38,26 @@ analysis and/or research.  Readers looking for additional introductory treatment
 available in CRAN can explore other excellent introductions such as \url{http://cran.r-project.org/doc/contrib/Farnsworth-EconometricsInR.pdf}
 and \url{http://cran.r-project.org/web/packages/AER/AER.pdf}.
 
-We assume the reader has downloaded the R language, and package "Ham94" from \url{http://www.r-project.org/}
+We assume the reader has downloaded the R language, and package "RcompHam94" from \url{http://www.r-project.org/}
 and has read "An Introduction to R" available here \url{http://cran.r-project.org/doc/manuals/R-intro.html}
 and also available as a PDF from the "Help" menu of the R package.
 
 To load the package, just use:
 
 \begin{Scode}{eval=FALSE}
-library("Ham94")
+library("RcompHam94")
 \end{Scode}
 
 Code shown in this document (and some not shown for brevity) can be executed using the R "demo" function.  For a list of
 available demos, use:
 
 \begin{Scode}{eval=FALSE}
-demo(package="Ham94")
+demo(package="RcompHam94")
 \end{Scode}
 
 To invoke a specific demo, say the demo called "p112", use:
 \begin{Scode}{eval=FALSE}
-demo(topic="p112",package="Ham94")
+demo(topic="p112",package="RcompHam94")
 \end{Scode}
 
 In general the demos are written so that the results of individual calculations can be examined
@@ -79,32 +68,32 @@ Page references in the body of this document refer to \TSA.
 \tableofcontents
 \pagebreak{}
 \section{Linear Difference Equations}
-\SweaveInput{demos/p4.H}
-\SweaveInput{demos/p5.H}
-\SweaveInput{demos/p15.H}
+\input{p4.tex}
+\input{p5.tex}
+\input{p15.tex}
 \section{Stationary ARMA Processes}
-\SweaveInput{demos/p50.H}
-\SweaveInput{demos/p51.H}
-\SweaveInput{demos/p55.H}
+\input{p50.tex}
+\input{p51.tex}
+\input{p55.tex}
 \section{Sample Autocorrelations and Partial Autocorrelations}
-\SweaveInput{demos/p112.H}
+\input{p112.tex}
 \section{Spectral Analysis}
-\SweaveInput{demos/p167.H}
+\input{p167.tex}
 \section{The Kalman Filter}
-\SweaveInput{demos/p376.H}
+\input{p376.tex}
 \section{Generalized Method of Moments}
-\SweaveInput{demos/p410.H}
+\input{p410.tex}
 \section{Models of Nonstationary Time Series}
-\SweaveInput{demos/p448.H}
+\input{p448.tex}
 \section{Univariate Processes with Unit Roots}
-\SweaveInput{demos/p489.H}
+\input{p489.tex}
 \section{Cointegration}
-\SweaveInput{demos/p582.H}
+\input{p582.tex}
 \section{Full-Information Maximum Likelihood Analysis of Cointegrated Systems}
-\SweaveInput{demos/p647.H}
+\input{p647.tex}
 \section{Time Series Models of Heteroskedasticity}
-\SweaveInput{demos/p660.H}
+\input{p660.tex}
 \section{Modeling Time Series with Changes in Regime}
-\SweaveInput{demos/p697.H}
+\input{p697.tex}
 
 \end{document}
