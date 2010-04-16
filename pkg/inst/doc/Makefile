@@ -1,39 +1,39 @@
-COMPONENTDIR=demos
 subsections = \
-	$(COMPONENTDIR)/p4.Rnw \
-	$(COMPONENTDIR)/p5.Rnw \
-	$(COMPONENTDIR)/p15.Rnw \
-	$(COMPONENTDIR)/p50.Rnw \
-	$(COMPONENTDIR)/p51.Rnw \
-	$(COMPONENTDIR)/p55.Rnw \
-	$(COMPONENTDIR)/p112.Rnw \
-	$(COMPONENTDIR)/p167.Rnw \
-	$(COMPONENTDIR)/p376.Rnw \
-	$(COMPONENTDIR)/p410.Rnw \
-	$(COMPONENTDIR)/p448.Rnw \
-	$(COMPONENTDIR)/p489.Rnw \
-	$(COMPONENTDIR)/p582.Rnw \
-	$(COMPONENTDIR)/p647.Rnw \
-	$(COMPONENTDIR)/p660.Rnw \
-	$(COMPONENTDIR)/p697.Rnw
-
-
-%.Rnw : %.H
-	cat demos/Sweave_prefix.Rnw $< > $(*F).Rnw
-	R CMD Sweave $(*F).Rnw
-	cat demos/Stangle_prefix.Rnw $< > $(*F).Rnw
-	R CMD Stangle $(*F).Rnw
-	grep -v "^###" $(*F).R > ../../demo/$(*F).R
-	mv $(*F)*.* $(COMPONENTDIR)
+	p4.tex \
+	p5.tex \
+	p15.tex \
+	p50.tex \
+	p51.tex \
+	p55.tex \
+	p112.tex \
+	p167.tex \
+	p376.tex \
+	p410.tex \
+	p448.tex \
+	p489.tex \
+	p582.tex \
+	p647.tex \
+	p660.tex \
+	p697.tex
 
 all : Companion.pdf ;
 
-Companion.pdf : Companion.tex
+Companion.pdf : RcompHam94 $(subsections) Companion.tex
 	texi2dvi --pdf Companion.tex
-  
-Companion.tex: $(subsections) Companion.Rnw
-	R CMD Sweave Companion.Rnw
+
+RcompHam94:
+	R CMD  build --no-vignettes ../..
+	R CMD  INSTALL  RcompHam94_0.1.tar.gz
+
+%.tex : %.H
+	cat Sweave_prefix.Rnw $< > $(*F).Rnw
+	R CMD Sweave $(*F).Rnw
+	cat Stangle_prefix.Rnw $< > $(*F).Rnw
+	R CMD Stangle $(*F).Rnw
+	grep -v "^###" $(*F).R > ../../demo/$(*F).R
 
 clean :	
-	rm Rplots.pdf Companion-* Companion.toc Companion.out Companion.log Companion.aux
-	cd ./demos; rm *.tex *.pdf *.eps
+	rm -r RcompHam94 p*.tex *.tar.gz Rplots.pdf *-*.pdf *p*.eps p*.R p*.Rnw Companion.toc Companion.out Companion.log Companion.aux Companion.tex
+
+
+
