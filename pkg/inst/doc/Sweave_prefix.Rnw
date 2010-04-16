@@ -1,4 +1,4 @@
 \SweaveSyntax{SweaveSyntaxLatex}
 \begin{Scode}{}
-library("Ham94")
+library("RcompHam94")
 \end{Scode}
