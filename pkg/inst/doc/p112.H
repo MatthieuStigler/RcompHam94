@@ -5,7 +5,7 @@ of seasonally adjusted real US GNP from 1947 to 1988,
 available by simple transformations of the data in object "gnp1996".
 The data is prepared by selecting quarterly date from as shown, then computing the log of differences.
 \begin{Scode}{}
-data(gnp1996,package = "Ham94")
+data(gnp1996,package = "RcompHam94")
 selection <- subset( gnp1996, Quarter >= "1947-01-01" & Quarter <= "1988-10-01")
 y <- diff(log(selection$GNPH))
 \end{Scode}
