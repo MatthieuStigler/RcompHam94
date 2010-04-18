@@ -5,7 +5,7 @@
 \usepackage{amsmath}
 \usepackage{Sweave}
 \usepackage{url}
-\usepackage[unicode=true, pdfusetitle, backref=false,colorlinks=false] {hyperref}
+\usepackage[unicode=true, pdfusetitle, backref=false,colorlinks=false, pdfborder={0 0 0}] {hyperref}
 
 \SweaveOpts{eps=FALSE, split=FALSE}
 \newcommand{\RcH}{\texttt{RcompHam94} }
@@ -28,7 +28,7 @@ with R\\[0.5cm]
 {\centering Preliminary\\}
 \end{titlepage}
 
-\section*{Foreword} \RcH is an R package that implements many of the worked examples in \TSA
+\section*{Foreword} \RcH is an R package that implements many of the worked examples in \TSA 
 as well as providing access to the code and datasets used.  In many cases \RcH provides both
 simplified implmentations "from scratch" to allow the reader to explore the underlying logic and
 calculations, and more realistic implementations that make use of the large body
