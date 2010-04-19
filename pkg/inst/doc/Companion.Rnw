@@ -6,6 +6,7 @@
 \usepackage{Sweave}
 \usepackage{url}
 \usepackage[unicode=true, pdfusetitle, backref=false,colorlinks=false, pdfborder={0 0 0}] {hyperref}
+\usepackage[authoryear]{natbib}
 
 \SweaveOpts{eps=FALSE, split=FALSE}
 \newcommand{\RcH}{\texttt{RcompHam94} }
@@ -29,7 +30,7 @@ with R\\[0.5cm]
 {\centering Preliminary\\}
 \end{titlepage}
 
-\section*{Foreword} \RcH is an R package that implements many of the worked examples in \TSA 
+\section*{Foreword} \RcH is an R package that implements many of the worked examples in \TSA \citep{Hamilton1994}
 as well as providing access to the code and datasets used.  In many cases \RcH provides both
 simplified implmentations "from scratch" to allow the reader to explore the underlying logic and
 calculations, and more realistic implementations that make use of the large body
@@ -37,7 +38,7 @@ of contributed packages in the Comprehensive R Archive Network (CRAN).  Thus rea
 cut their teeth on the textbook can use this package as a stepping stone to doing their own
 analysis and/or research.  Readers looking for additional introductory treatment of facilities 
 available in CRAN can explore other excellent introductions such as \url{http://cran.r-project.org/doc/contrib/Farnsworth-EconometricsInR.pdf}
-and \url{http://cran.r-project.org/web/packages/AER/AER.pdf}.
+and \url{http://cran.r-project.org/web/packages/AER/AER.pdf} \citep{KleiberZeileis2008}.
 
 We assume the reader has downloaded the R language, and package "RcompHam94" from \url{http://www.r-project.org/}
 and has read "An Introduction to R" available here \url{http://cran.r-project.org/doc/manuals/R-intro.html}
@@ -96,5 +97,9 @@ Page references in the body of this document refer to \TSA.
 \input{p660.tex}
 \section{Modeling Time Series with Changes in Regime}
 \input{p697.tex}
+
+\addcontentsline{toc}{section}{\refname}
+\bibliographystyle{econometrica}
+\bibliography{RcompBibliography}
 
 \end{document}
