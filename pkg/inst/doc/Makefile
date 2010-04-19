@@ -16,24 +16,28 @@ subsections = \
 	p660.tex \
 	p697.tex
 
-all : Companion.pdf ;
+all : Companion.pdf clean ;
 
 Companion.pdf : RcompHam94 $(subsections) Companion.tex
 	texi2dvi --pdf Companion.tex
 
+Companion.tex: Companion.Rnw
+	R CMD Sweave $<
+
 RcompHam94:
 	R CMD  build --no-vignettes ../..
-	R CMD  INSTALL  RcompHam94_0.1.tar.gz
+	R CMD  INSTALL  --library=.  RcompHam94_0.1.tar.gz
 
 %.tex : %.H
-	cat Sweave_prefix.Rnw $< > $(*F).Rnw
+	cat Sweave_prefix.H $< > $(*F).Rnw
 	R CMD Sweave $(*F).Rnw
-	cat Stangle_prefix.Rnw $< > $(*F).Rnw
+	cat Stangle_prefix.H $< > $(*F).Rnw
 	R CMD Stangle $(*F).Rnw
 	grep -v "^###" $(*F).R > ../../demo/$(*F).R
+	rm $(*F).Rnw
 
 clean :	
-	rm -r RcompHam94 p*.tex *.tar.gz Rplots.pdf *-*.pdf *p*.eps p*.R p*.Rnw Companion.toc Companion.out Companion.log Companion.aux Companion.tex
+	rm -r RcompHam94 p*.tex *.tar.gz Rplots.pdf *-*.pdf *p*.eps p*.R Companion.toc Companion.out Companion.log Companion.aux Companion.tex
 
 
 
