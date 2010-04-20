@@ -3,7 +3,7 @@ Section 19.2, beginning on page 582 describes cointegration testing of purchasin
 Italian lire and US dollars.  The data used is 100 times log monthly price levels and spot nominal and real
 exchange rates, normalized to a value of zero at the start of the series.  
 \begin{Scode}{}
-data( ppp, package="Ham94" )
+data( ppp, package="RcompHam94" )
 selection <- subset( ppp, Month >= "1973-01-01" & Month <= "1989-10-01" )
 ppp.data <- data.frame(
   Month=selection$Month,

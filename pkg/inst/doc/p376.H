@@ -45,7 +45,7 @@ kalman <- function( H, R, F, x, A, y, Q, xi.1.0, P.1.0 )
 The second is to specify the state space model as described on pp376-377 and estimate the parameters
 via maximum likelihood.  Data for this analysis is consumption and income data form dataset "coninc" in log differences.
 \begin{Scode}
-data(coninc,package = "Ham94")
+data(coninc,package = "RcompHam94")
 YGR <- diff( log(coninc$GYD82) )
 CGR <- diff( log(coninc$GC82) )
 y <- t(cbind(YGR-mean(YGR),CGR-mean(CGR)))
