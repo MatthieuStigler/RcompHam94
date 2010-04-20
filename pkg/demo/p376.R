@@ -37,7 +37,7 @@ kalman <- function( H, R, F, x, A, y, Q, xi.1.0, P.1.0 )
 }
 
 
-data(coninc,package = "RcompHam94")
+data(coninc,package = "Ham94")
 YGR <- diff( log(coninc$GYD82) )
 CGR <- diff( log(coninc$GC82) )
 y <- t(cbind(YGR-mean(YGR),CGR-mean(CGR)))

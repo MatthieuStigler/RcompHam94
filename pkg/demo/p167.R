@@ -1,4 +1,4 @@
-data(indprod,package = "RcompHam94")
+data(indprod,package = "Ham94")
 selection <- subset( indprod, Month >= "1947-01-01" & Month <= "1989-11-01")
 raw.data <- selection$IPMFG6
 logdiff.data <- 100*diff(log(raw.data),lag=1)
@@ -41,23 +41,5 @@ screen( n = screens[[4]], new = TRUE )
 par( mar=c(4,2,1,2),cex=.75)
 plot(1:length(yeardiff.s.Y.omega),yeardiff.s.Y.omega, type = "l", xlab="Figure 6.6 - Value of j", ylab="")
 close.screen(all=TRUE)
-
-
-args(spectrum)
-
-
-sp<-spectrum(raw.data,  plot=FALSE,span=10)
-x<-100*diff(log(raw.data))
-sp2<-spectrum(x, span=6, plot=FALSE)
-x12<-100*diff(log(raw.data), lag=12)
-sp3<-spectrum(x12, span=20, plot=FALSE)
-
-
-opar<-par(mfrow=c(2,2),mar=c(4,2,1,2),cex=.75)
-plot(selection$Month, raw.data, type = "l", xlab="Figure 6.3 - FRB IP Index, NSA", ylab="")
-plot(1:length(sp$spec),sp$spec, type="l",  xlab="Value of j", ylab="")
-plot(1:length(sp2$spec),sp2$spec, type="l", xlab="Figure 6.5 - Value of j", ylab="")
-plot(1:length(sp3$spec),sp3$spec, type="l", xlab="Figure 6.6 - Value of j", ylab="")
-par(opar)
 
 

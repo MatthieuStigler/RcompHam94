@@ -1,4 +1,4 @@
-data( ppp, package="RcompHam94" )
+data( ppp, package="Ham94" )
 selection <- subset( ppp, Month >= "1973-01-01" & Month <= "1989-10-01" )
 ppp.data <- data.frame(
   Month=selection$Month,
@@ -88,7 +88,7 @@ print( poh.residual.lms$coefficients )
 print( POH.results)
 
 
-data(coninc, package="RcompHam94")
+data(coninc, package="Ham94")
 selection <- subset( coninc,  Quarter >= "1947-01-01" & Quarter <= "1989-07-01" )
 coninc.data <- data.frame(Quarter=selection$Quarter,
   cons = 100*log(selection$GC82),

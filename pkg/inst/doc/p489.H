@@ -23,7 +23,7 @@ three month U.S. Treasury
 yield data from
 dataset gnptbill, shown below.
 \begin{Scode}{}
-data( gnptbill, package="RcompHam94" )
+data( gnptbill, package="Ham94" )
 tbill.data <- data.frame(yt=gnptbill$TBILL[-1],yt_1=gnptbill$TBILL[-length(gnptbill$TBILL)])
 \end{Scode}
 \begin{center}

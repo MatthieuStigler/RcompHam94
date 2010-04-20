@@ -2,7 +2,7 @@ Pages 167 to 170 give an example of the uses of spectral analysis, as applied to
 January 1947 to November 1989, available in data source "indprod".  We will analyze the actual raw data, as well as
 one month and one year log changes.
 \begin{Scode}
-data(indprod,package = "RcompHam94")
+data(indprod,package = "Ham94")
 selection <- subset( indprod, Month >= "1947-01-01" & Month <= "1989-11-01")
 raw.data <- selection$IPMFG6
 logdiff.data <- 100*diff(log(raw.data),lag=1)

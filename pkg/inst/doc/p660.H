@@ -1,6 +1,6 @@
 \subsection{Preamble}
 Page 658 and forward provide examples of ARCH models.  Several utility functions are needed for these examples.
-The function \fun{arch.fitted.values} calculates the value of ht given the conditional information set YT and
+The function "arch.fitted.values" calculates the value of ht given the conditional information set YT and
 a parameter vector THETA as described on page 660, [21.1.17] to [21.1.20].
 \begin{Scode}{}
 arch.fitted.values <- function( THETA, YT )
@@ -18,7 +18,7 @@ arch.fitted.values <- function( THETA, YT )
   list( u=u, h=h )
 }
 \end{Scode}
-Function \fun{arch.standard.errors} calculates values for standard errors according to the description on page 663,
+Function "arch.standard.errors" calculates values for standard errors according to the description on page 663,
 particularly equations [21.1.25], and also using [21.1.21] for the estimate of the outer product estimate of the
 information matrix.
 \begin{Scode}{}
@@ -108,7 +108,7 @@ GMM.estimates <- function( YT, h, THETA, S)
 The dataset for these examples is the US Fed Funds Rate, monthly between Jan 1955 and December 2000,
 shown below.
 \begin{Scode}{}
-data(fedfunds, package="RcompHam94")
+data(fedfunds, package="Ham94")
 selection <- subset( fedfunds, Month >= "1955-01-01" & Month <= "2000-12-01" )
 y <- selection$FFED
 \end{Scode}

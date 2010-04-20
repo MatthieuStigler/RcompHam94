@@ -1,4 +1,4 @@
-data(gnp1996,package = "RcompHam94")
+data(gnp1996,package = "Ham94")
 selection <- subset( gnp1996, Quarter >= "1947-01-01" & Quarter <= "1988-10-01")
 y <- diff(log(selection$GNPH))
 
