@@ -1,4 +1,4 @@
-data(gnpdata, package="Ham94")
+data(gnpdata, package="RcompHam94")
 selection <- subset( gnpdata, Quarter >= "1951-01-01" & Quarter <= "1984-04-01" )
 d <- selection$Quarter[-1]
 g <- diff(100*log( selection$GNP),lag = 1, differences = 1)

@@ -1,4 +1,4 @@
-data( ppp, package="Ham94" )
+data( ppp, package="RcompHam94" )
 selection <- subset( ppp, Month >= "1973-01-01" & Month <= "1989-10-01" )
 ppp.data <- data.frame(
   pstar=100*log(selection$PC6IT/selection$PC6IT[[1]]),
