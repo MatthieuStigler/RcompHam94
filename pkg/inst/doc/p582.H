@@ -107,7 +107,7 @@ print( POH.results)
 \end{Scode}
 A second example performs a similar analysis on quarterly US consumption and income data from 1947Q1 to 1989Q4.
 \begin{Scode}{}
-data(coninc, package="Ham94")
+data(coninc, package="RcompHam94")
 selection <- subset( coninc,  Quarter >= "1947-01-01" & Quarter <= "1989-07-01" )
 coninc.data <- data.frame(Quarter=selection$Quarter,
   cons = 100*log(selection$GC82),

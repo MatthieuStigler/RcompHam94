@@ -1,4 +1,4 @@
-data(gnptbill,package = "Ham94")
+data(gnptbill,package = "RcompHam94")
 print( fdGPH(gnptbill$GNP) )
 print( fdGPH(gnptbill$TBILL) )
 

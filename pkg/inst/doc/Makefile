@@ -37,7 +37,7 @@ RcompHam94:
 	rm $(*F).Rnw
 
 clean :	
-	rm -r RcompHam94 p*.tex *.tar.gz Rplots.pdf *-*.pdf *p*.eps p*.R Companion.toc Companion.out Companion.log Companion.aux Companion.tex
+	rm -r RcompHam94 p*.Rnw p*.tex *.tar.gz Rplots.pdf *-*.pdf *p*.eps p*.R Companion.toc Companion.out Companion.log Companion.aux Companion.tex
 
 
 
