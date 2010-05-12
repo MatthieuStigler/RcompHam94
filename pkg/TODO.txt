@@ -1,0 +1,17 @@
+COMPANION
+-introduce packages zoo and dynlm in preamble
+-add citations of used packages
+-add R facilities
+
+
+R
+-have clean R CMD check
+-document data files
+
+SWEAVE
+-remove > and + ?
+-check indentation: text sometimes disapearing, see for example p 30.
+
+LATEX
+-print correct number of chatpers
+-print chapter name in bottom of page?
