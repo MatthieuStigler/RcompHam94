@@ -76,7 +76,7 @@ Page references in the body of this document refer to \TSA.
 \input{p50.tex}
 \input{p51.tex}
 \input{p55.tex}
-\section{Sample Autocorrelations and Partial Autocorrelations}
+\section{Forecasting}
 \input{p112.tex}
 \section{Spectral Analysis}
 \input{p167.tex}
