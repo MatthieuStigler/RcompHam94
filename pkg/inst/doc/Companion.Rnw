@@ -69,7 +69,7 @@ Page references in the body of this document refer to \TSA.
 \pagebreak{}
 \tableofcontents
 \pagebreak{}
-\section{Linear Difference Equations}
+\section{Difference Equations}
 \input{p4.tex}
 \input{p5.tex}
 \input{p15.tex}
