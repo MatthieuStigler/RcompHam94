@@ -88,7 +88,7 @@ print( poh.residual.lms$coefficients )
 print( POH.results)
 
 
-data(coninc, package="Ham94")
+data(coninc, package="RcompHam94")
 selection <- subset( coninc,  Quarter >= "1947-01-01" & Quarter <= "1989-07-01" )
 coninc.data <- data.frame(Quarter=selection$Quarter,
   cons = 100*log(selection$GC82),
