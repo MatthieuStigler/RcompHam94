@@ -35,7 +35,10 @@ Wald.F.Test(R, b, r, s2, XtX_1)
 
 \examples{
 ## test in a regression on a constant and single regressor that the intercept is 0 and the slope is 1.
-lm <- lm( y ~ 1 + x, list(y=rnorm(10) + 1:10,x=1:10))
+set.seed(123)
+data.sim<-list(y=rnorm(10) + 1:10,x=1:10)
+
+lm <- lm( y ~ 1 + x, data=data.sim)
 F <- Wald.F.Test( R=diag(2),
                     b=lm$coefficients,
                     r=c(1,0),
