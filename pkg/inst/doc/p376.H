@@ -3,7 +3,7 @@ Page 376 describes an application of Kalman filtering to business cycles by Jame
 
 This can be implemented in two steps.  The first is to implement the Kalman algorithm as described in the text.  The
 following function follows the notation in Chapter 13.
-\begin{Scode}{}
+\begin{Scode}{376_1}
 kalman <- function( H, R, F, x, A, y, Q, xi.1.0, P.1.0 )
 {
   T <- dim(x)[[2]]
@@ -44,7 +44,7 @@ kalman <- function( H, R, F, x, A, y, Q, xi.1.0, P.1.0 )
 \end{Scode}
 The second is to specify the state space model as described on pp376-377 and estimate the parameters
 via maximum likelihood.  Data for this analysis is consumption and income data form dataset "coninc" in log differences.
-\begin{Scode}
+\begin{Scode}{376_2}
 data(coninc,package = "RcompHam94")
 YGR <- diff( log(coninc$GYD82) )
 CGR <- diff( log(coninc$GC82) )
@@ -52,7 +52,7 @@ y <- t(cbind(YGR-mean(YGR),CGR-mean(CGR)))
 \end{Scode}
 The following helper function converts the parameters from a vector of labeled
 components into the correct inputs for the filter as shown in equations [13.1.28], [13.1.29], and [13.1.30].
-\begin{Scode}
+\begin{Scode}{376_3}
 THETA <- c( "phic"=.9, "phi1"=.9, "phi2"=.9, "g1"=.5, "g2"=.5,
                   "sigc"=.05^.5, "sig11"=.05^.5, "sig22"=.05^.5,
                   "r11"=sd(YGR), "r22"=sd(CGR) )
@@ -74,7 +74,7 @@ theta.y.to.params <- function( THETA, y )
 }
 \end{Scode}
 The objective function is the log.likelihood obtained from the Kalman iteration.
-\begin{Scode}
+\begin{Scode}{376_4}
 objective <- function( THETA, y )
 {
   params <- theta.y.to.params( THETA, y )
@@ -83,14 +83,14 @@ objective <- function( THETA, y )
 optimizer.results <- optim( par=THETA, fn=objective, gr=NULL, y=y, control=list(trace=0) )
 \end{Scode}
 Finally calculate the smoothed results based on the ML estimated parameters.
-\begin{Scode}
+\begin{Scode}{376_5}
 params <- theta.y.to.params( optimizer.results$par, y)
 smoothed.results <- kalman( params$H, params$R, params$F, params$x, params$A, y, params$Q, params$xi.1.0, params$P.1.0 )
 smoothed.data <- smoothed.results$xi.t.T[1,]
 \end{Scode}
 The results of the smoothed inference are shown below.
 \begin{center}
-\begin{Scode}{fig=TRUE, echo=FALSE}
+\begin{Scode}{376_6,fig=TRUE, echo=FALSE}
 plot(coninc$Quarter[-1],(y[1,])/sd(y[1,]),type="l",lty=1,ylab="CGR, YGR, and C")
 lines(coninc$Quarter[-1],(y[2,])/sd(y[2,]),lty=2)
 lines(coninc$Quarter[-1],(smoothed.data-mean(smoothed.data))/sd(smoothed.data),lty=3)
@@ -103,10 +103,8 @@ aspect of using such packages is specifying an interface to allow for time varyi
 under those conditions.  Some packages use caller supplied functions, others check for dimensions of (up to three
 dimensional) arrays, etc.
 
-
 For example, a simple implementation of the example on page 382 using function \fun{kalman} above might look like:
 \begin{Scode}{376_7}
-
 sigmasq <- 2
 params <- list(
     F=array( c(0,1,0,0), c(2,2) ), # [13.3.4]
@@ -133,7 +131,7 @@ be time varying in FKF (called Tt).  A call exploiting this would then have a ve
 for each time index, i.e. a three dimensional array.  If F is not time varying, (as in the case of the simple
 example above) then a three dimensional array with the
 third dimension being of length 1 is used.
-\begin{Scode}{}
+\begin{Scode}{367_8}
 fkfResults <- FKF::fkf(
   a0=params$xi.1.0,
   P0=params$P.1.0,
@@ -147,7 +145,7 @@ fkfResults <- FKF::fkf(
   check.input=TRUE)
 \end{Scode}
 The results can be confirmed by examing the output:
-\begin{Scode}{}
+\begin{Scode}{376_9}
 print(myResults$xi.t.t)
 print(fkfResults$att)
 \end{Scode}
