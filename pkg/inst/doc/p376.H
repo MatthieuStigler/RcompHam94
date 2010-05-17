@@ -98,13 +98,15 @@ lines(coninc$Quarter[-1],(smoothed.data-mean(smoothed.data))/sd(smoothed.data),l
 \end{center}
 \subsection{R facilities for Kalman Filtering}
 There are several different packages in R for Kalman filtering, some that provide univariate support,
-others multivariate support.  For example, package FKF is a fast implementation, but there are others. One key
+others multivariate support.  For example, package \pkg{FKF} is a fast implementation, but there are others. One key
 aspect of using such packages is specifying an interface to allow for time varying inputs, and providing results
 under those conditions.  Some packages use caller supplied functions, others check for dimensions of (up to three
 dimensional) arrays, etc.
 
-For example, a simple implementation of the example on page 382 using function "kalman" above might look like:
-\begin{Scode}{}
+
+For example, a simple implementation of the example on page 382 using function \{kalman} above might look like:
+\begin{Scode}{376_7}
+
 sigmasq <- 2
 params <- list(
     F=array( c(0,1,0,0), c(2,2) ), # [13.3.4]
