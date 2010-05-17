@@ -50,17 +50,13 @@ for ( i in 4:5)
 \end{Scode}
 \begin{center}
 \begin{Scode}{fig=TRUE, echo=FALSE}
-screens <- split.screen( figs=c(3,2) )
-screen.index <- 1
+par( mfrow=c(3,2) )
 for ( i in 1:length(specifications) )
 {
-  screen( n = screens[[i]], new = TRUE )
   specification <- specifications[[i]]
   par( mar=c(4,2,1,2), cex=.75)
   plot( 1:T, specification$rho, type = "h", xlab=specification$label, ylab="", lwd=5,lend=1, ylim=c(-1,1))
-  screen.index <- screen.index + 1
 }
-close.screen(all=TRUE)
 \end{Scode}
 \end{center}
 \subsection{R Facilities for ARMA Autocorrelations}

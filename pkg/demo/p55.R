@@ -33,17 +33,13 @@ for ( i in 1:length(specifications) )
 
 
 
-screens <- split.screen( figs=c(3,1) )
-screen.index <- 1
+par( mfrow=c(3,1) )
 for ( i in 1:length(specifications) )
 {
-  screen( n = screens[[i]], new = TRUE )
   specification <- specifications[[i]]
   par( mar=c(4,2,1,2), cex=.75)
   plot( 1:T, specification$Y, type = "l", xlab=specification$label, ylab="", font.lab=5)
-  screen.index <- screen.index + 1
 }
-close.screen(all=TRUE)
 
 
 for ( specification in specifications )
