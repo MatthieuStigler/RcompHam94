@@ -41,17 +41,13 @@ for ( i in 4:5)
 }
 
 
-screens <- split.screen( figs=c(3,2) )
-screen.index <- 1
+par( mfrow=c(3,2) )
 for ( i in 1:length(specifications) )
 {
-  screen( n = screens[[i]], new = TRUE )
   specification <- specifications[[i]]
   par( mar=c(4,2,1,2), cex=.75)
   plot( 1:T, specification$rho, type = "h", xlab=specification$label, ylab="", lwd=5,lend=1, ylim=c(-1,1))
-  screen.index <- screen.index + 1
 }
-close.screen(all=TRUE)
 
 
 g3 <- ARMAacf(ar = numeric(0), ma = specifications[[3]]$MA, lag.max = T, pacf = FALSE)

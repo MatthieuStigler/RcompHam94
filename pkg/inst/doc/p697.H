@@ -88,9 +88,8 @@ flags.to.start.stop <- function( flags )
   cbind( (1:n)[starts], (1:n)[ends] )
 }
 
-screens <- split.screen( figs=c(3,1) )
+par( mfrow=c(3,1) )
 
-screen( n = screens[[1]], new = TRUE )
 par( mar=c(4,2,1,2), cex=.75)
 pairs <- flags.to.start.stop( selection$RECESSQ)
 plot( d, g, type="l",lty=1,xlab="Figure 22.4a", ylab="")
@@ -98,20 +97,17 @@ usr <- par()$usr
 lines( c(d[1], d[length(g)]), c( 0, 0 ), lty=1 )
 rect( d[pairs[,1]], rep(usr[3], dim(pairs)[[1]]), d[pairs[,2]], rep(usr[4], dim(pairs)[[1]]))  
 
-screen( n = screens[[2]], new = TRUE )
 par( mar=c(4,2,1,2), cex=.75)
 plot( d, recession.probability, type="l",lty=1,xlab="Figure 22.4b", ylab="")
 usr <- par()$usr
 lines( c(d[1], d[length(g)]), c( 0, 0 ), lty=1 )
 rect( d[pairs[,1]], rep(usr[3], dim(pairs)[[1]]), d[pairs[,2]], rep(usr[4], dim(pairs)[[1]]))  
 
-screen( n = screens[[3]], new = TRUE )
 par( mar=c(4,2,1,2), cex=.75)
 plot( d, smoothed.recession.probability, type="l",lty=1,xlab="Smoothed recession probabilities", ylab="")
 usr <- par()$usr
 lines( c(d[1], d[length(g)]), c( 0, 0 ), lty=1 )
 rect( d[pairs[,1]], rep(usr[3], dim(pairs)[[1]]), d[pairs[,2]], rep(usr[4], dim(pairs)[[1]]))  
 
-close.screen(all=TRUE)
 \end{Scode}
 \end{center}
