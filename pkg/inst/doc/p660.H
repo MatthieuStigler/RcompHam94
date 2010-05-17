@@ -1,6 +1,6 @@
 \subsection{Preamble}
 Page 658 and forward provide examples of ARCH models.  Several utility functions are needed for these examples.
-The function "arch.fitted.values" calculates the value of ht given the conditional information set YT and
+The function \fun{arch.fitted.values} calculates the value of ht given the conditional information set YT and
 a parameter vector THETA as described on page 660, [21.1.17] to [21.1.20].
 \begin{Scode}{}
 arch.fitted.values <- function( THETA, YT )
@@ -18,7 +18,7 @@ arch.fitted.values <- function( THETA, YT )
   list( u=u, h=h )
 }
 \end{Scode}
-Function "arch.standard.errors" calculates values for standard errors according to the description on page 663,
+Function \fun{arch.standard.errors} calculates values for standard errors according to the description on page 663,
 particularly equations [21.1.25], and also using [21.1.21] for the estimate of the outer product estimate of the
 information matrix.
 \begin{Scode}{}
