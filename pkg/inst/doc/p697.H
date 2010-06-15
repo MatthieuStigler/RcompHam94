@@ -25,8 +25,8 @@ The loop uses equations [22.4.24], [22.4.2], [22.4.5], [22.4.8], [22.4.7], [22.4
 \begin{Scode}{}
 infer.regimes <- function(THETA, YT)
 {
-  phi <- THETA[  grep("phi*", names(THETA)) ]  
-  mu <- THETA[  grep("mu*", names(THETA)) ]
+  phi <- THETA[  grep("phi.*", names(THETA)) ]  
+  mu <- THETA[  grep("mu.*", names(THETA)) ]
   sigma <- THETA[ "sigma" ]
   p11star <- THETA[  "p11star" ]
   p22star <- THETA[  "p22star" ]
@@ -38,7 +38,7 @@ infer.regimes <- function(THETA, YT)
   ergodic.pi <- (solve( t(A) %*% A ) %*% t(A)) [,nstates + 1] # [22.2.26]
 
   xi.t.t <- ergodic.pi %o% rep(1,nlags)
-  xi.t.t_1 <- cbind(xi.t.t, ergodic.pi)
+  xi.t.t_1 <- xi.t.t
   log.likelihood <- 0
   for ( tt in (nlags+1):T )
   {
@@ -53,7 +53,7 @@ infer.regimes <- function(THETA, YT)
   }
   xi.t.T <- xi.t.t[,T] %o% 1
   for ( tt in (T-1):1 )
-     xi.t.T <- cbind( xi.t.t[,tt] * (t(P) %*% (xi.t.T[,1] / xi.t.t_1[,tt+1])), xi.t.T )       # [22.4.14]
+     xi.t.T <- cbind( xi.t.t[,tt] * (t(P) %*% (xi.t.T[,1] / xi.t.t_1[,tt])), xi.t.T )       # [22.4.14]
   list( log.likelihood=log.likelihood, xi.t.t=xi.t.t, xi.t.T=xi.t.T )
 }
 \end{Scode}
@@ -69,7 +69,7 @@ Now we are in a position to optimize, then calculated the smoothed probabilities
 optimal parameters. 
 \begin{Scode}{}
 objective <- function( THETA, YT ) { -infer.regimes( THETA, YT )$log.likelihood }
-optimizer.results <- optim( par=THETA, hessian=TRUE, fn=objective, gr=NULL, YT=g)
+optimizer.results <- optim( par=THETA, hessian=TRUE, fn=objective, gr=NULL, YT=g,method="BFGS")
 se <- diag(solve(optimizer.results$hessian))^.5
 print(optimizer.results$par)
 print(se)
@@ -89,22 +89,22 @@ flags.to.start.stop <- function( flags )
 }
 
 par( mfrow=c(3,1) )
-
-par( mar=c(4,2,1,2), cex=.75)
 pairs <- flags.to.start.stop( selection$RECESSQ)
-plot( d, g, type="l",lty=1,xlab="Figure 22.4a", ylab="")
-usr <- par()$usr
-lines( c(d[1], d[length(g)]), c( 0, 0 ), lty=1 )
-rect( d[pairs[,1]], rep(usr[3], dim(pairs)[[1]]), d[pairs[,2]], rep(usr[4], dim(pairs)[[1]]))  
 
 par( mar=c(4,2,1,2), cex=.75)
-plot( d, recession.probability, type="l",lty=1,xlab="Figure 22.4b", ylab="")
+plot( d, recession.probability, type="l",lty=1,xlab="Figure 22.4a", ylab="")
 usr <- par()$usr
 lines( c(d[1], d[length(g)]), c( 0, 0 ), lty=1 )
 rect( d[pairs[,1]], rep(usr[3], dim(pairs)[[1]]), d[pairs[,2]], rep(usr[4], dim(pairs)[[1]]))  
 
 par( mar=c(4,2,1,2), cex=.75)
 plot( d, smoothed.recession.probability, type="l",lty=1,xlab="Smoothed recession probabilities", ylab="")
+usr <- par()$usr
+lines( c(d[1], d[length(g)]), c( 0, 0 ), lty=1 )
+rect( d[pairs[,1]], rep(usr[3], dim(pairs)[[1]]), d[pairs[,2]], rep(usr[4], dim(pairs)[[1]]))  
+
+par( mar=c(4,2,1,2), cex=.75)
+plot( d, g, type="l",lty=1,xlab="Figure 22.4b", ylab="")
 usr <- par()$usr
 lines( c(d[1], d[length(g)]), c( 0, 0 ), lty=1 )
 rect( d[pairs[,1]], rep(usr[3], dim(pairs)[[1]]), d[pairs[,2]], rep(usr[4], dim(pairs)[[1]]))  
