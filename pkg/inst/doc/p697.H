@@ -1,3 +1,20 @@
+\subsection{Statistical Analysis of i.i.d. Mixture Distributions}
+Figure 22.2:
+\begin{Scode}{fig=TRUE}
+curve (0.8*dnorm(x,0,1), from=-2, to=8, n=100, col=1, ylab="f(x)", main="Density of mixture of 2 gaussians")
+curve (0.2*dnorm(x,4,1), from=-2, to=8, n=100, add=TRUE, col=3)
+mixture<-function(x) 0.8*dnorm(x,0,1)+0.2*dnorm(x,4,1)
+curve (mixture, from=-2, to=8, n=100, col=2, add=TRUE)
+\end{Scode}
+
+Figure 22.3:
+\begin{Scode}{fig=TRUE}
+mixture2<-function(x) 0.6*dnorm(x,0,1)+0.4*dnorm(x,2,8)
+curve (mixture2, from=-3, to=8, n=100, col=2,ylab="f(x)", main="Density of mixture of 2 gaussians",ylim=c(0,0.25) )
+curve (0.6*dnorm(x,0,1), from=-3, to=8, n=100, col=1, add=TRUE)
+curve (0.4*dnorm(x,2,sqrt(8)), from=-3, to=8, n=100, add=TRUE, col=3)
+\end{Scode}
+
 \subsection{Modeling Changes in Regime}
 Page 697 describes an example of the application of Markov switching models to US GNP from 1951Q1 to 1984Q4.
 \begin{Scode}{}
