@@ -21,7 +21,7 @@ Page 697 describes an example of the application of Markov switching models to U
 data(gnpdata, package="RcompHam94")
 selection <- subset( gnpdata, Quarter >= "1951-01-01" & Quarter <= "1984-04-01" )
 d <- selection$Quarter[-1]
-g <- diff(100*log( selection$GNP),lag = 1, differences = 1)
+g <- diff(100*log( selection$GNP))
 \end{Scode}
 
 The actual implementation uses the technique of collapsing multi-period states into a single state, p691, p698.
@@ -82,7 +82,7 @@ THETA <- c( p11star=.85, p22star=.70, mu=c(1,0),
   phi=as.vector(g.lm$coefficients[1+(1:nlags)]),
   sigma=summary(g.lm)$sigma )
 \end{Scode}
-Now we are in a position to optimize, then calculated the smoothed probabilities from the
+Now we are in a position to optimize, then calculate the smoothed probabilities from the
 optimal parameters. 
 \begin{Scode}{}
 objective <- function( THETA, YT ) { -infer.regimes( THETA, YT )$log.likelihood }
