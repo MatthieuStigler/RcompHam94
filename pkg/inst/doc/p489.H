@@ -23,7 +23,7 @@ three month U.S. Treasury
 yield data from
 dataset gnptbill, shown below.
 \begin{Scode}{}
-data( gnptbill, package="Ham94" )
+data( gnptbill, package="RcompHam94" )
 tbill.data <- data.frame(yt=gnptbill$TBILL[-1],yt_1=gnptbill$TBILL[-length(gnptbill$TBILL)])
 \end{Scode}
 \begin{center}
@@ -109,7 +109,7 @@ print( case4.PP)
 \end{Scode}
 \subsection{Augmented Dickey Fuller Tests}
 Example 17.8 illustrates incorporates the use of lagged regressors to (putatively) eliminate serial
-correlation in the residuals.  The function \{embed} is useful for creating lagged regressors.
+correlation in the residuals.  The function \fun{embed} is useful for creating lagged regressors.
 \begin{Scode}{}
 tbill.data <- list(
   it=gnptbill$TBILL[-1:-5],

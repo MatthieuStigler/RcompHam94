@@ -108,7 +108,7 @@ GMM.estimates <- function( YT, h, THETA, S)
 The dataset for these examples is the US Fed Funds Rate, monthly between Jan 1955 and December 2000,
 shown below.
 \begin{Scode}{}
-data(fedfunds, package="Ham94")
+data(fedfunds, package="RcompHam94")
 selection <- subset( fedfunds, Month >= "1955-01-01" & Month <= "2000-12-01" )
 y <- selection$FFED
 \end{Scode}

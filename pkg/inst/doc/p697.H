@@ -18,7 +18,7 @@ curve (0.4*dnorm(x,2,sqrt(8)), from=-3, to=8, n=100, add=TRUE, col=3)
 \subsection{Modeling Changes in Regime}
 Page 697 describes an example of the application of Markov switching models to US GNP from 1951Q1 to 1984Q4.
 \begin{Scode}{}
-data(gnpdata, package="Ham94")
+data(gnpdata, package="RcompHam94")
 selection <- subset( gnpdata, Quarter >= "1951-01-01" & Quarter <= "1984-04-01" )
 d <- selection$Quarter[-1]
 g <- diff(100*log( selection$GNP),lag = 1, differences = 1)

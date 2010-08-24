@@ -92,7 +92,7 @@ GMM.estimates <- function( YT, h, THETA, S)
 }
 
 
-data(fedfunds, package="Ham94")
+data(fedfunds, package="RcompHam94")
 selection <- subset( fedfunds, Month >= "1955-01-01" & Month <= "2000-12-01" )
 y <- selection$FFED
 

@@ -37,7 +37,7 @@ kalman <- function( H, R, F, x, A, y, Q, xi.1.0, P.1.0 )
 }
 
 
-data(coninc,package = "Ham94")
+data(coninc,package = "RcompHam94")
 YGR <- diff( log(coninc$GYD82) )
 CGR <- diff( log(coninc$GC82) )
 y <- t(cbind(YGR-mean(YGR),CGR-mean(CGR)))
@@ -80,6 +80,7 @@ smoothed.data <- smoothed.results$xi.t.T[1,]
 plot(coninc$Quarter[-1],(y[1,])/sd(y[1,]),type="l",lty=1,ylab="CGR, YGR, and C")
 lines(coninc$Quarter[-1],(y[2,])/sd(y[2,]),lty=2)
 lines(coninc$Quarter[-1],(smoothed.data-mean(smoothed.data))/sd(smoothed.data),lty=3)
+
 
 
 sigmasq <- 2

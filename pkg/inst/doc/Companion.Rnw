@@ -11,6 +11,7 @@
 \newcommand{\RcH}{\texttt{RcompHam94} }
 \newcommand{\fun}[1]{\emph{#1}}
 \newcommand{\lib}[1]{package \emph{#1}}
+\newcommand{\pkg}[1]{\texttt{#1}}
 \newcommand{\TSA}{\texttt{Time Series Analysis} }
 \linespread{1.3}
 \SweaveSyntax{SweaveSyntaxLatex}
