@@ -26,15 +26,18 @@ g <- diff(100*log( selection$GNP))
 
 The actual implementation uses the technique of collapsing multi-period states into a single state, p691, p698.
 During the maximum likelihood estimation process the state probabilities will change, but the layout of the matrix
-is still the same.  The following code fragment precalculates the transition matrix structure with the five possible
-values, then uses a separate 5 element lookup vector to populate it.
+is still the same.  The following code fragment precalculates the transition matrix structure with the five possible values, then uses a separate 5 element lookup vector to populate it.
 \begin{Scode}{}
 nlags <- 4
 nstates <- 2 ^ (nlags+1)
 lagstate <- 1 + outer( 1:nstates, 1:(nlags+1), FUN=function(i,j) { trunc((i-1) / 2 ^ (nlags + 1-j) ) %% 2 } )
+head(lagstate)
+\end{Scode}
+\begin{Scode}{}
 transit <- outer( X=1:nstates, Y=1:nstates, FUN=function(i,j) {
   (( 2 *lagstate[i,1] + lagstate[j,1] - 1) - 1) * (((i-1) %% (2^nlags)) == trunc((j-1)/2)) + 1
   } ) 
+head(transit)
 \end{Scode}
 The bulk of the work is done by the following function, based on the algorithm in section 22.4.
 Ergodic probabilities are defined as on page 684, including equation [22.2.26].
