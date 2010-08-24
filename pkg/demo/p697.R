@@ -1,15 +1,31 @@
+curve (0.8*dnorm(x,0,1), from=-2, to=8, n=100, col=1, ylab="f(x)", main="Density of mixture of 2 gaussians")
+curve (0.2*dnorm(x,4,1), from=-2, to=8, n=100, add=TRUE, col=3)
+mixture<-function(x) 0.8*dnorm(x,0,1)+0.2*dnorm(x,4,1)
+curve (mixture, from=-2, to=8, n=100, col=2, add=TRUE)
+
+
+mixture2<-function(x) 0.6*dnorm(x,0,1)+0.4*dnorm(x,2,8)
+curve (mixture2, from=-3, to=8, n=100, col=2,ylab="f(x)", main="Density of mixture of 2 gaussians",ylim=c(0,0.25) )
+curve (0.6*dnorm(x,0,1), from=-3, to=8, n=100, col=1, add=TRUE)
+curve (0.4*dnorm(x,2,sqrt(8)), from=-3, to=8, n=100, add=TRUE, col=3)
+
+
 data(gnpdata, package="RcompHam94")
 selection <- subset( gnpdata, Quarter >= "1951-01-01" & Quarter <= "1984-04-01" )
 d <- selection$Quarter[-1]
-g <- diff(100*log( selection$GNP),lag = 1, differences = 1)
+g <- diff(100*log( selection$GNP))
 
 
 nlags <- 4
 nstates <- 2 ^ (nlags+1)
 lagstate <- 1 + outer( 1:nstates, 1:(nlags+1), FUN=function(i,j) { trunc((i-1) / 2 ^ (nlags + 1-j) ) %% 2 } )
+head(lagstate)
+
+
 transit <- outer( X=1:nstates, Y=1:nstates, FUN=function(i,j) {
   (( 2 *lagstate[i,1] + lagstate[j,1] - 1) - 1) * (((i-1) %% (2^nlags)) == trunc((j-1)/2)) + 1
   } ) 
+head(transit)
 
 
 infer.regimes <- function(THETA, YT)

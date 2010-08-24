@@ -1,23 +1,43 @@
+\subsection{Statistical Analysis of i.i.d. Mixture Distributions}
+Figure 22.2:
+\begin{Scode}{fig=TRUE}
+curve (0.8*dnorm(x,0,1), from=-2, to=8, n=100, col=1, ylab="f(x)", main="Density of mixture of 2 gaussians")
+curve (0.2*dnorm(x,4,1), from=-2, to=8, n=100, add=TRUE, col=3)
+mixture<-function(x) 0.8*dnorm(x,0,1)+0.2*dnorm(x,4,1)
+curve (mixture, from=-2, to=8, n=100, col=2, add=TRUE)
+\end{Scode}
+
+Figure 22.3:
+\begin{Scode}{fig=TRUE}
+mixture2<-function(x) 0.6*dnorm(x,0,1)+0.4*dnorm(x,2,8)
+curve (mixture2, from=-3, to=8, n=100, col=2,ylab="f(x)", main="Density of mixture of 2 gaussians",ylim=c(0,0.25) )
+curve (0.6*dnorm(x,0,1), from=-3, to=8, n=100, col=1, add=TRUE)
+curve (0.4*dnorm(x,2,sqrt(8)), from=-3, to=8, n=100, add=TRUE, col=3)
+\end{Scode}
+
 \subsection{Modeling Changes in Regime}
 Page 697 describes an example of the application of Markov switching models to US GNP from 1951Q1 to 1984Q4.
 \begin{Scode}{}
 data(gnpdata, package="RcompHam94")
 selection <- subset( gnpdata, Quarter >= "1951-01-01" & Quarter <= "1984-04-01" )
 d <- selection$Quarter[-1]
-g <- diff(100*log( selection$GNP),lag = 1, differences = 1)
+g <- diff(100*log( selection$GNP))
 \end{Scode}
 
 The actual implementation uses the technique of collapsing multi-period states into a single state, p691, p698.
 During the maximum likelihood estimation process the state probabilities will change, but the layout of the matrix
-is still the same.  The following code fragment precalculates the transition matrix structure with the five possible
-values, then uses a separate 5 element lookup vector to populate it.
+is still the same.  The following code fragment precalculates the transition matrix structure with the five possible values, then uses a separate 5 element lookup vector to populate it.
 \begin{Scode}{}
 nlags <- 4
 nstates <- 2 ^ (nlags+1)
 lagstate <- 1 + outer( 1:nstates, 1:(nlags+1), FUN=function(i,j) { trunc((i-1) / 2 ^ (nlags + 1-j) ) %% 2 } )
+head(lagstate)
+\end{Scode}
+\begin{Scode}{}
 transit <- outer( X=1:nstates, Y=1:nstates, FUN=function(i,j) {
   (( 2 *lagstate[i,1] + lagstate[j,1] - 1) - 1) * (((i-1) %% (2^nlags)) == trunc((j-1)/2)) + 1
   } ) 
+head(transit)
 \end{Scode}
 The bulk of the work is done by the following function, based on the algorithm in section 22.4.
 Ergodic probabilities are defined as on page 684, including equation [22.2.26].
@@ -65,7 +85,7 @@ THETA <- c( p11star=.85, p22star=.70, mu=c(1,0),
   phi=as.vector(g.lm$coefficients[1+(1:nlags)]),
   sigma=summary(g.lm)$sigma )
 \end{Scode}
-Now we are in a position to optimize, then calculated the smoothed probabilities from the
+Now we are in a position to optimize, then calculate the smoothed probabilities from the
 optimal parameters. 
 \begin{Scode}{}
 objective <- function( THETA, YT ) { -infer.regimes( THETA, YT )$log.likelihood }

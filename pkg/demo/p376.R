@@ -82,6 +82,7 @@ lines(coninc$Quarter[-1],(y[2,])/sd(y[2,]),lty=2)
 lines(coninc$Quarter[-1],(smoothed.data-mean(smoothed.data))/sd(smoothed.data),lty=3)
 
 
+
 sigmasq <- 2
 params <- list(
     F=array( c(0,1,0,0), c(2,2) ), # [13.3.4]

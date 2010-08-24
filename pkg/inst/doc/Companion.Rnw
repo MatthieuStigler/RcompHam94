@@ -6,32 +6,30 @@
 \usepackage{Sweave}
 \usepackage{url}
 \usepackage[unicode=true, pdfusetitle, backref=false,colorlinks=false, pdfborder={0 0 0}] {hyperref}
-\usepackage[authoryear]{natbib}
 
 \SweaveOpts{eps=FALSE, split=FALSE}
 \newcommand{\RcH}{\texttt{RcompHam94} }
 \newcommand{\fun}[1]{\emph{#1}}
 \newcommand{\lib}[1]{package \emph{#1}}
-\newcommand{\pkg}[1]{\emph{#1}}
-
+\newcommand{\pkg}[1]{\texttt{#1}}
 \newcommand{\TSA}{\texttt{Time Series Analysis} }
 \linespread{1.3}
 \SweaveSyntax{SweaveSyntaxLatex}
 
 \begin{document}
 \begin{Scode}{results=hide, echo=FALSE}
-options(prompt=" ", encoding="LATIN-9")
+options(prompt=" ", continue=" ",encoding="LATIN-9")
 \end{Scode}
 
 \begin{titlepage}
-{\centering \huge An R Companion to James Hamilton's "\TSA" \\[0.5cm]
+{\centering \huge An R Companion to James Hamilton's Times Series Analysis \\[0.5cm]
 with R\\[0.5cm]
 \small Robert Bell, Matthieu Stigler\\}
 \vfill\par
 {\centering Preliminary\\}
 \end{titlepage}
 
-\section*{Foreword} \RcH is an R package that implements many of the worked examples in \TSA \citep{Hamilton1994}
+\section*{Foreword} \RcH is an R package that implements many of the worked examples in \TSA 
 as well as providing access to the code and datasets used.  In many cases \RcH provides both
 simplified implmentations "from scratch" to allow the reader to explore the underlying logic and
 calculations, and more realistic implementations that make use of the large body
@@ -39,7 +37,7 @@ of contributed packages in the Comprehensive R Archive Network (CRAN).  Thus rea
 cut their teeth on the textbook can use this package as a stepping stone to doing their own
 analysis and/or research.  Readers looking for additional introductory treatment of facilities 
 available in CRAN can explore other excellent introductions such as \url{http://cran.r-project.org/doc/contrib/Farnsworth-EconometricsInR.pdf}
-and \url{http://cran.r-project.org/web/packages/AER/AER.pdf} \citep{KleiberZeileis2008}.
+and \url{http://cran.r-project.org/web/packages/AER/AER.pdf}.
 
 We assume the reader has downloaded the R language, and package "RcompHam94" from \url{http://www.r-project.org/}
 and has read "An Introduction to R" available here \url{http://cran.r-project.org/doc/manuals/R-intro.html}
@@ -70,7 +68,7 @@ Page references in the body of this document refer to \TSA.
 \pagebreak{}
 \tableofcontents
 \pagebreak{}
-\section{Difference Equations}
+\section{Linear Difference Equations}
 \input{p4.tex}
 \input{p5.tex}
 \input{p15.tex}
@@ -78,27 +76,18 @@ Page references in the body of this document refer to \TSA.
 \input{p50.tex}
 \input{p51.tex}
 \input{p55.tex}
-\setcounter{section}{3}
-\section{Forecasting}
+\section{Sample Autocorrelations and Partial Autocorrelations}
 \input{p112.tex}
-\setcounter{section}{5}
 \section{Spectral Analysis}
 \input{p167.tex}
-
-\section{Asymptotic distribution theory}
-\input{Chap7.tex}
-
-\setcounter{section}{12}
 \section{The Kalman Filter}
 \input{p376.tex}
 \section{Generalized Method of Moments}
 \input{p410.tex}
 \section{Models of Nonstationary Time Series}
 \input{p448.tex}
-\setcounter{section}{16}
 \section{Univariate Processes with Unit Roots}
 \input{p489.tex}
-\setcounter{section}{18}
 \section{Cointegration}
 \input{p582.tex}
 \section{Full-Information Maximum Likelihood Analysis of Cointegrated Systems}
@@ -107,9 +96,5 @@ Page references in the body of this document refer to \TSA.
 \input{p660.tex}
 \section{Modeling Time Series with Changes in Regime}
 \input{p697.tex}
-
-\addcontentsline{toc}{section}{\refname}
-\bibliographystyle{econometrica}
-\bibliography{RcompBibliography}
 
 \end{document}

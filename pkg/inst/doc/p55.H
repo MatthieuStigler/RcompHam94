@@ -8,7 +8,6 @@ specifications <- list(
     list( label="f = .9", MA=vector(mode="numeric"), AR=c(.9) )
   )
 T <- 100
-set.seed(123)
 epsilon <- rnorm(T,0,1)
 \end{Scode}
 These can be calculated by iterating forward on the defining equations.
