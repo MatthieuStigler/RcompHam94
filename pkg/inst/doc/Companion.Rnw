@@ -22,7 +22,7 @@ options(prompt=" ", encoding="LATIN-9")
 \end{Scode}
 
 \begin{titlepage}
-{\centering \huge An R Companion to James Hamilton's "\TSA" \\[0.5cm]
+{\centering \huge An R Companion to James Hamilton's Times Series Analysis \\[0.5cm]
 with R\\[0.5cm]
 \small Robert Bell, Matthieu Stigler\\}
 \vfill\par
