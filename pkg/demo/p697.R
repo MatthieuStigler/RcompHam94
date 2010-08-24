@@ -13,15 +13,19 @@ curve (0.4*dnorm(x,2,sqrt(8)), from=-3, to=8, n=100, add=TRUE, col=3)
 data(gnpdata, package="RcompHam94")
 selection <- subset( gnpdata, Quarter >= "1951-01-01" & Quarter <= "1984-04-01" )
 d <- selection$Quarter[-1]
-g <- diff(100*log( selection$GNP),lag = 1, differences = 1)
+g <- diff(100*log( selection$GNP))
 
 
 nlags <- 4
 nstates <- 2 ^ (nlags+1)
 lagstate <- 1 + outer( 1:nstates, 1:(nlags+1), FUN=function(i,j) { trunc((i-1) / 2 ^ (nlags + 1-j) ) %% 2 } )
+head(lagstate)
+
+
 transit <- outer( X=1:nstates, Y=1:nstates, FUN=function(i,j) {
   (( 2 *lagstate[i,1] + lagstate[j,1] - 1) - 1) * (((i-1) %% (2^nlags)) == trunc((j-1)/2)) + 1
   } ) 
+head(transit)
 
 
 infer.regimes <- function(THETA, YT)
