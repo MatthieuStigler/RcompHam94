@@ -18,7 +18,7 @@
 
 \begin{document}
 \begin{Scode}{results=hide, echo=FALSE}
-options(prompt=" ", encoding="LATIN-9")
+options(prompt=" ", continue=" ",encoding="LATIN-9")
 \end{Scode}
 
 \begin{titlepage}
