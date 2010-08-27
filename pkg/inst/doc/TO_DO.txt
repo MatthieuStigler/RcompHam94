@@ -13,3 +13,5 @@ p489, 582, 599
   Add in use of R packages
 p582
   legend on graph
+p647
+  validate calculations
