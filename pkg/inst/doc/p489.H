@@ -178,6 +178,31 @@ for ( lag in 10:1 )
 }
 print(lag)
 \end{Scode}
-\subsection{R Facilities for Testing Unit Roots}
-TBD
+\subsection*{Annex: R Facilities}
+\textbf{Further features in R}
 
+
+\fbox{
+\begin{minipage}{\textwidth}
+Since the tests of Dickey-Fuller and of Philips Perron, the issue of unit root testing has seen tremendous research, with hundrer papers on the topic. For survey of the litterature, see the article of \citet{PhillipsXiao1998}, or the book of \citet{MaddalaKim1998}. 
+
+Concerning further developments, \citet{ERS1996} used a so-called GLS detrending method to test in presence of drift and trends, and obtain tests with higher power. Concerning the lag length selection, \citet{NgPerron2001} and \citet{PerronQu2007} introduce a new information criterion which enable to a better selection of the lag length. Finally, \citet{KPSS} design a test where the null hypothesis is the stationarity of the series (around a mean or a linear trend), while the alternative is the unit root. 
+
+On an other direction, \citet{Hansen1995} show that by adding other related variables in the testig regression, one can obtain tests with much higher power. 
+\end{minipage}
+}
+
+
+\fbox{
+\begin{minipage}{\textwidth}
+Package \pkg{urca}, well documented in the book of \citet{PfaffBook2008}, contains a number of other tests:
+\begin{itemize}
+\item The DF-GLS test:  \fun{ur.ers}
+\item A LM test: \fun{ur.sp}
+\item The KPSS test of stationarity: \fun{ur.kpss}
+\item A test taking into account structural breaks: \fun{ur.za}
+\end{itemize}
+
+Package \pkg{CADFtest}, described in \citet{Lupi2009}, implements the Hansen covariate test, nesting the ADF test when no covariate is given. It offers also the choice of the lag according to the \citet{NgPerron2001} MAIC criterion. 
+\end{minipage}
+}
