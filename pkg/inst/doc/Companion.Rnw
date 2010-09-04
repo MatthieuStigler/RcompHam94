@@ -83,6 +83,10 @@ Page references in the body of this document refer to \TSA.
 \setcounter{section}{5}
 \section{Spectral Analysis}
 \input{p167.tex}
+
+\section{Asymptotic distribution theory}
+\input{Chap7.tex}
+
 \setcounter{section}{12}
 \section{The Kalman Filter}
 \input{p376.tex}
