@@ -1,7 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{Sweave}{}
 
-\RequirePackage{ifthen}
+\RequirePackage{ifthen, color, fancyvrb}
 \newboolean{Sweave@gin}
 \setboolean{Sweave@gin}{true}
 
@@ -14,7 +14,8 @@
 
 \ifthenelse{\boolean{Sweave@gin}}{\setkeys{Gin}{width=0.8\textwidth}}{}%
 
-\DefineVerbatimEnvironment{Sinput}{Verbatim}{fontshape=sl,frame=lines,label=R code,labelposition=topline,fontsize=\small}
+\definecolor{Burgondy}{RGB}{128,0,64}
+\DefineVerbatimEnvironment{Sinput}{Verbatim}{fontshape=sl,frame=lines,label=R code,labelposition=topline,fontsize=\small, formatcom=\color{Burgondy}}
 \DefineVerbatimEnvironment{Soutput}{Verbatim}{frame=lines,label=output,labelposition=topline,fontsize=\small}
 \DefineVerbatimEnvironment{Scode}{Verbatim}{fontshape=sl,frame=lines,label=R code,labelposition=topline}
 
