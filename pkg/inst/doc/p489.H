@@ -184,11 +184,11 @@ print(lag)
 
 \fbox{
 \begin{minipage}{\textwidth}
-Since the tests of Dickey-Fuller and of Philips Perron, the issue of unit root testing has seen tremendous research, with hundrer papers on the topic. For survey of the litterature, see the article of \citet{PhillipsXiao1998}, or the book of \citet{MaddalaKim1998}. 
+Since the tests of Dickey-Fuller and of Philips Perron, the issue of unit root testing has seen tremendous research, with hundreds of papers on the topic. For a survey of the literature, see the article of \citet{PhillipsXiao1998}, or the book of \citet{MaddalaKim1998}. 
 
-Concerning further developments, \citet{ERS1996} used a so-called GLS detrending method to test in presence of drift and trends, and obtain tests with higher power. Concerning the lag length selection, \citet{NgPerron2001} and \citet{PerronQu2007} introduce a new information criterion which enable to a better selection of the lag length. Finally, \citet{KPSS} design a test where the null hypothesis is the stationarity of the series (around a mean or a linear trend), while the alternative is the unit root. 
+Concerning further developments, \citet{ERS1996} used a so-called GLS detrending method to test for the presence of drift and trends, and obtain tests with higher power. Concerning the lag length selection, \citet{NgPerron2001} and \citet{PerronQu2007} introduce a new information criterion which enables a better selection of the lag length. Finally, \citet{KPSS} design a test where the null hypothesis is a stationary series (around a mean or a linear trend), while the alternative is the unit root. 
 
-On an other direction, \citet{Hansen1995} show that by adding other related variables in the testig regression, one can obtain tests with much higher power. 
+In an other direction, \citet{Hansen1995} show that by adding other related variables in the testing regression, one can obtain tests with much higher power. 
 \end{minipage}
 }
 
