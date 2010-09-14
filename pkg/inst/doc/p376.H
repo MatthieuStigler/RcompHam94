@@ -1,8 +1,23 @@
 \subsection{Kalman Filtering Example Applied to Detecting Business Cycles}
 Page 376 describes an application of Kalman filtering to business cycles by James Stock and Mark Watson.
 
-This can be implemented in two steps.  The first is to implement the Kalman algorithm as described in the text.  The
-following function follows the notation in Chapter 13.
+This can be implemented in two steps.  The first is to implement the Kalman algorithm as described in the text.
+The
+following function generally follows the notation in Chapter 13, but several of the
+variables store the complete history of the iterations so that they include one more
+dimension.  For example, rather than being a simple variable, the state vector is a vector
+of vectors (i.e. a two dimensionsal array) as shown.
+\begin{scode}{eval=FALSE}
+xi.t.t_1 <- array(dim=c(length(xi.1.0),T+1) )
+\end{scode}
+One minor difference is that the gain matrix as computed here does not include
+premultiplication by the F matrix as shown in [13.2.19] in the text.
+\begin{scode}{eval=FALSE}
+K.t[,,tt] <- P.t.t_1[,,tt] %*% H %*% V
+\end{scode}
+See also [13.2.16], [13.2.21] for updates of the second moments; [13.2.15], [13.2.17]
+for updates of the state vectors; [13.6.11], [13.6.16], [13.6.20] for computation
+of the smoothed inferences.
 \begin{Scode}{376_1}
 kalman <- function( H, R, F, x, A, y, Q, xi.1.0, P.1.0 )
 {
