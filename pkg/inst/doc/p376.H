@@ -7,14 +7,14 @@ following function generally follows the notation in Chapter 13, but several of 
 variables store the complete history of the iterations so that they include one more
 dimension.  For example, rather than being a simple variable, the state vector is a vector
 of vectors (i.e. a two dimensionsal array) as shown.
-\begin{scode}{eval=FALSE}
+\begin{Scode}{eval=FALSE}
 xi.t.t_1 <- array(dim=c(length(xi.1.0),T+1) )
-\end{scode}
+\end{Scode}
 One minor difference is that the gain matrix as computed here does not include
 premultiplication by the F matrix as shown in [13.2.19] in the text.
-\begin{scode}{eval=FALSE}
+\begin{Scode}{eval=FALSE}
 K.t[,,tt] <- P.t.t_1[,,tt] %*% H %*% V
-\end{scode}
+\end{Scode}
 See also [13.2.16], [13.2.21] for updates of the second moments; [13.2.15], [13.2.17]
 for updates of the state vectors; [13.6.11], [13.6.16], [13.6.20] for computation
 of the smoothed inferences.
