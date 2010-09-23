@@ -9,6 +9,6 @@ Applied on US GDP and Treasury Yields data:
 
 \begin{Scode}{fracdiff}
 data(gnptbill,package = "RcompHam94")
-print( fdGPH(gnptbill$GNP) )
-print( fdGPH(gnptbill$TBILL) )
+print( fdGPH(log(gnptbill[,"Y"]) )
+print( fdGPH(gnptbill[,"i"]) )
 \end{Scode}

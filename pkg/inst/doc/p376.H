@@ -61,8 +61,8 @@ The second is to specify the state space model as described on pp376-377 and est
 via maximum likelihood.  Data for this analysis is consumption and income data form dataset "coninc" in log differences.
 \begin{Scode}{376_2}
 data(coninc,package = "RcompHam94")
-YGR <- diff( log(coninc$GYD82) )
-CGR <- diff( log(coninc$GC82) )
+YGR <- diff( log(as.vector(coninc[,"GYD82"])) )
+CGR <- diff( log(as.vector(coninc[,"GC82"])) )
 y <- t(cbind(YGR-mean(YGR),CGR-mean(CGR)))
 \end{Scode}
 The following helper function converts the parameters from a vector of labeled
@@ -106,9 +106,9 @@ smoothed.data <- smoothed.results$xi.t.T[1,]
 The results of the smoothed inference are shown below.
 \begin{center}
 \begin{Scode}{376_6,fig=TRUE, echo=FALSE}
-plot(coninc$Quarter[-1],(y[1,])/sd(y[1,]),type="l",lty=1,ylab="CGR, YGR, and C")
-lines(coninc$Quarter[-1],(y[2,])/sd(y[2,]),lty=2)
-lines(coninc$Quarter[-1],(smoothed.data-mean(smoothed.data))/sd(smoothed.data),lty=3)
+plot(index(coninc)[-1],(y[1,])/sd(y[1,]),type="l",lty=1,ylab="CGR, YGR, and C")
+lines(index(coninc)[-1],(y[2,])/sd(y[2,]),lty=2)
+lines(index(coninc)[-1],(smoothed.data-mean(smoothed.data))/sd(smoothed.data),lty=3)
 \end{Scode}
 \end{center}
 \subsection{R facilities for Kalman Filtering}

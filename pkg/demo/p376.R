@@ -1,3 +1,9 @@
+## xi.t.t_1 <- array(dim=c(length(xi.1.0),T+1) )
+
+
+## K.t[,,tt] <- P.t.t_1[,,tt] %*% H %*% V
+
+
 kalman <- function( H, R, F, x, A, y, Q, xi.1.0, P.1.0 )
 {
   T <- dim(x)[[2]]
