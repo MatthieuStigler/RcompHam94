@@ -11,9 +11,9 @@ curve (0.4*dnorm(x,2,sqrt(8)), from=-3, to=8, n=100, add=TRUE, col=3)
 
 
 data(gnpdata, package="RcompHam94")
-selection <- subset( gnpdata, Quarter >= "1951-01-01" & Quarter <= "1984-04-01" )
-d <- selection$Quarter[-1]
-g <- diff(100*log( selection$GNP))
+selection <- window( gnpdata, start=c(1951,1),end=c(1984,2) )
+g <- diff(100*log(as.vector(selection[,"GNP"])))
+d <- index(selection[-1])
 
 
 nlags <- 4
@@ -63,18 +63,18 @@ infer.regimes <- function(THETA, YT)
 }
 
 
-g.lm <- lm( g ~ 1 + g_lag, list(g=g[-1:-nlags], g_lag=embed(g[-length(g)],nlags)) )
+g.lm <- dynlm( g ~ 1 + L(g,1:4), data=zooreg(data.frame(g=g)))
 THETA <- c( p11star=.85, p22star=.70, mu=c(1,0),
   phi=as.vector(g.lm$coefficients[1+(1:nlags)]),
   sigma=summary(g.lm)$sigma )
 
 
 objective <- function( THETA, YT ) { -infer.regimes( THETA, YT )$log.likelihood }
-optimizer.results <- optim( par=THETA, hessian=TRUE, fn=objective, gr=NULL, YT=g,method="BFGS")
+optimizer.results <- optim( par=THETA, hessian=TRUE, fn=objective, gr=NULL, YT=as.vector(g),method="BFGS")
 se <- diag(solve(optimizer.results$hessian))^.5
 print(optimizer.results$par)
 print(se)
-regimes <- infer.regimes( optimizer.results$par, g )
+regimes <- infer.regimes( optimizer.results$par, as.vector(g) )
 recession.probability <- as.vector( (1:nstates >nstates/2) %*% regimes$xi.t.t )
 smoothed.recession.probability <- as.vector( (1:nstates >nstates/2) %*% regimes$xi.t.T )
 
@@ -86,9 +86,8 @@ flags.to.start.stop <- function( flags )
   ends <- (c( flags[-1], 1) - flags) == -2
   cbind( (1:n)[starts], (1:n)[ends] )
 }
-
 par( mfrow=c(3,1) )
-pairs <- flags.to.start.stop( selection$RECESSQ)
+pairs <- flags.to.start.stop( as.vector(selection[,"RECESSQ"]))
 
 par( mar=c(4,2,1,2), cex=.75)
 plot( d, recession.probability, type="l",lty=1,xlab="Figure 22.4a", ylab="")

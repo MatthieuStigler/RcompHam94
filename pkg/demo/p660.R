@@ -26,7 +26,8 @@ arch.standard.errors <- function( THETA, YT )
   a <- k + 1 + m
   fv <- arch.fitted.values( THETA, YT )
   h <- fv$h
-  u2 <- fv$u^2
+  u <- fv$u
+  u2 <- u^2
 
   S <- array( 0, c(a,a) )
   D <- array( 0, c(a,a) )
@@ -93,29 +94,27 @@ GMM.estimates <- function( YT, h, THETA, S)
 
 
 data(fedfunds, package="RcompHam94")
-selection <- subset( fedfunds, Month >= "1955-01-01" & Month <= "2000-12-01" )
-y <- selection$FFED
+selection <- window( fedfunds, start=c(1955,1), end=c(2000.99) )
 
 
-plot( selection$Month, y, type="l",lty=1,xlab="Figure 21.1 - US Fed Funds Rate", ylab="")
+plot( index(selection), selection[,"FFED"], type="l",lty=1,xlab="Figure 21.1 - US Fed Funds Rate", ylab="")
 
 
-y.lm <- lm( y ~ 1 + y_1, list(y=y[-1],y_1=y[-length(y)]) )
-u <- y.lm$residuals
-u2.lm <- lm( u2 ~ 1 + u2_lag, list(u2=u[-1:-4]^2,u2_lag=embed(u[-length(u)]^2,4)) )
+y.lm <- dynlm( y ~ 1 + L(y), data=zooreg(cbind(y=as.vector(selection[,"FFED"]))) )
+u2.lms <- summary( dynlm( u2 ~ 1 + L(u2,1:4), zooreg(data.frame(u2=y.lm$residuals^2)) ) )
 F34 <- Wald.F.Test( R=cbind( rep(0,2) %o% rep(0,3), diag(2) ),
-                    b=u2.lm$coefficients,
+                    b=u2.lms$coefficients[,"Estimate"],
                     r=c(0,0),
-                    s2=summary(u2.lm)$sigma^2,
-                    XtX_1=summary(u2.lm)$cov.unscaled )
-F34.sig <- 1-pf(F34,2,length(u2.lm$residuals)-u2.lm$rank)
+                    s2=u2.lms$sigma^2,
+                    XtX_1=u2.lms$cov.unscaled )
+F34.sig <- 1-pf(F34,2,u2.lms$df[[2]])
 F234 <- Wald.F.Test( R=cbind( rep(0,3) %o% rep(0,2), diag(3) ),
-                    b=u2.lm$coefficients,
+                    b=u2.lms$coefficients[,"Estimate"],
                     r=c(0,0,0),
-                    s2=summary(u2.lm)$sigma^2,
-                    XtX_1=summary(u2.lm)$cov.unscaled )
-F234.sig <- 1-pf(F234,3,length(u2.lm$residuals)-u2.lm$rank)
-accept.arch <- pchisq(length(u2.lm$residuals)*summary(u2.lm)$r.squared,4)
+                    s2=u2.lms$sigma^2,
+                    XtX_1=u2.lms$cov.unscaled )
+F234.sig <- 1-pf(F234,3,u2.lms$df[[2]])
+accept.arch <- pchisq(length(u2.lms$residuals)*u2.lms$r.squared,4)
 print(F34)
 print(F34.sig)
 print(F234)
@@ -123,6 +122,7 @@ print(F234.sig)
 print(accept.arch)
 
 
+y <- as.vector(selection[,"FFED"])
 YT <- list(
   y=y[-1],
   x=cbind(rep(1,length(y)-1), y[-length(y)] ) )
